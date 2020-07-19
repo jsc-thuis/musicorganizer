@@ -34,9 +34,23 @@ public class MusicPlayer
      */
     public void playSample(String filename)
     {
+        play(filename, 500);
+    }
+
+    /**
+     * Play the given file complete.
+     * The method returns once it has finished playing.
+     * @param filename The file to be played.
+     */
+    public void playComplete(String filename)
+    {
+        play(filename);
+    }
+
+    private void play(String filename, int seconds) {
         try {
             setupPlayer(filename);
-            player.play(500);
+            player.play(seconds);
         }
         catch(JavaLayerException e) {
             reportProblem(filename);
@@ -44,6 +58,10 @@ public class MusicPlayer
         finally {
             killPlayer();
         }
+    }
+
+    private void play(String filename) {
+        play(filename, 2147483647);
     }
     
     /**
@@ -91,11 +109,7 @@ public class MusicPlayer
             InputStream is = getInputStream(filename);
             player = new AdvancedPlayer(is, createAudioDevice());
         }
-        catch (IOException e) {
-            reportProblem(filename);
-            killPlayer();
-        }
-        catch(JavaLayerException e) {
+        catch (IOException | JavaLayerException e) {
             reportProblem(filename);
             killPlayer();
         }
