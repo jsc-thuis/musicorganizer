@@ -59,6 +59,13 @@ public class MusicOrganizer
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
         }
     }
+
+    public Track getTrack(int index) {
+        if (indexValid(index)) {
+            return tracks.get(index);
+        }
+        return null;
+    }
     
     /**
      * Return the number of tracks in the collection.
