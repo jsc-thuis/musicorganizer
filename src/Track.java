@@ -13,7 +13,8 @@ public class Track
     private String title;
     // Where the track is stored.
     private String filename;
-    
+    private static int instances = 0;
+
     /**
      * Constructor for objects of class Track.
      * @param artist The track's artist.
@@ -83,6 +84,14 @@ public class Track
         this.artist = artist;
         this.title = title;
         this.filename = filename;
+        instances++;
     }
-    
+
+    public int numberOfInstances() {
+        return instances;
+    }
+
+    public static int numberInstances() {
+        return instances;
+    }
 }

@@ -37,8 +37,14 @@ public class PlayList {
      */
     public void listAllTracks() {
         System.out.println("Track listing for playlist " + naam + " :");
+        System.out.println("Totaal aantal tracks via klassenmethode: " + Track.numberInstances());
+        boolean numberShown = false;
 
         for(Track track : tracks) {
+            if (!numberShown) {
+                System.out.println("Totaal aantal tracks via instantiemethode: " + track.numberOfInstances());
+                numberShown = true;
+            }
             System.out.println(track.getDetails());
         }
         System.out.println();
